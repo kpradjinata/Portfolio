@@ -13,7 +13,7 @@ const HighlightedProjects = () => {
             <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">
                 <h2 className="text-4xl md:text-5xl font-bold text-blue-400 mb-6 uppercase tracking-wider">Spotlight</h2>
                 <p className="text-xl text-gray-300 leading-relaxed">
-                    Discover a curated selection of my work, highlighting key achievements and innovative solutions developed across various projects.
+                    Discover a curated selection of my work, highlighting key achievements across various projects.
                 </p>
             </div>
             <div className="md:w-1/2 flex justify-center md:justify-end">

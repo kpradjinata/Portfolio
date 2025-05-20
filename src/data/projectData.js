@@ -24,7 +24,7 @@ export const projects = [
     ],
     impact: 'Binder redefines modern education by making collaborative learning more accessible and effective. By leveraging PyBKT, Binder ensures that student groups are optimized for peer learning, fostering engagement and success. It empowers students and educators to focus on meaningful interactions by automating repetitive tasks like quiz generation and performance tracking.',
     skills: ['React.js', 'Python (Programming Language)', 'TypeScript', 'Convex', 'HTML', 'Large Language Models (LLM)'],
-    githubUrl: 'https://github.com/your-username/binder', // Please update if you have a specific URL for Binder
+    githubUrl: 'https://github.com/kpradjinata/Binder', 
   },
   {
     id: 'homelink',
