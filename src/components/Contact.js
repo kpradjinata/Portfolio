@@ -26,12 +26,17 @@ const Contact = () => {
         </p>
         <div 
           ref={buttonRef}
-          className={`flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 transition-all duration-700 ease-out delay-400 
-                      ${isButtonInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          className={`flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 
+                      ${isButtonInView ? 'opacity-100' : 'opacity-0'}`}
         >
           <a 
             href="mailto:youremail@example.com" 
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 text-lg transform hover:scale-105"
+            className={`bg-blue-500 text-white font-semibold py-3 px-8 rounded-lg shadow-md text-lg 
+                        transition-all duration-300 ease-in-out transform  /* Base transitions */
+                        hover:bg-pink-500 hover:text-yellow-300 hover:scale-150 hover:rotate-12 hover:shadow-2xl /* Obnoxious hover */
+                        focus:outline-none focus:ring-4 focus:ring-pink-300 /* Focus style */
+                        ${isButtonInView ? 'animate-boing animate-wiggle [animation-delay:0.8s]' : 'opacity-0'}` // Entrance and continuous animation
+                      } // Added animation-delay so wiggle starts after boing
           >
             Email Me
           </a>

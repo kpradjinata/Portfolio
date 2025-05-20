@@ -11,15 +11,8 @@ const useInView = (options) => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
-      // Update state when the element's intersection status changes.
-      // We only want to trigger the animation once when it becomes visible.
-      if (entry.isIntersecting) {
-        setIsInView(true);
-        // Unobserve after it's in view to trigger the animation only once.
-        if (ref.current) { // Ensure ref.current exists before trying to unobserve
-          observer.unobserve(ref.current);
-        }
-      }
+      // Update state based on whether the element is currently intersecting the viewport.
+      setIsInView(entry.isIntersecting);
     }, options);
 
     const currentElement = ref.current;
@@ -32,7 +25,7 @@ const useInView = (options) => {
         observer.unobserve(currentElement);
       }
     };
-  }, [options]); // Re-run effect if options change
+  }, [options, ref]); // Added ref to dependencies to re-observe if the ref itself changes, though less common.
 
   return [ref, isInView];
 };
