@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-black text-white antialiased;
+  /* Tailwind's preflight (base styles) will handle margin: 0 */
+  /* font-family is also handled by Tailwind or can be configured in tailwind.config.js */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; /* Keeping this as a fallback or explicit choice */
+  line-height: 1.6; /* Tailwind provides line-height utilities e.g., leading-normal */
+}
+
+code {
+  /* Tailwind provides font utilities, or this can be configured */
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+main {
+  /* padding-top for fixed navbar is handled in App.js */
+}
+
+/* General link styles */
+a {
+  @apply text-blue-400 hover:text-blue-300;
+  /* text-decoration is handled by Tailwind's base styles or utilities like hover:underline */
+}
+
+/* General heading styles can be managed via Tailwind utilities directly on elements */
+/* h1, h2, h3, h4, h5, h6 {
+    margin-top: 0; 
+    font-weight: 600;
+} */
+
+/* Utility class for main content containers within sections, can be applied directly */
+/* .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px; 
+} */
