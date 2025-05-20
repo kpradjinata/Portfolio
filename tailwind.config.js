@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // Scan all JS, JSX, TS, TSX files in src
-    "./public/index.html" // Also scan index.html if you use classes there
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./public/index.html"
   ],
   theme: {
     extend: {
@@ -11,29 +11,39 @@ module.exports = {
         genos: ['Genos', 'sans-serif'],
       },
       keyframes: {
-        wiggle: {
-          '0%, 100%': { transform: 'rotate(-10deg) scale(1.15) translateX(-3px)' },
-          '25%': { transform: 'rotate(10deg) scale(1.1) translateX(3px)' },
-          '50%': { transform: 'rotate(-10deg) scale(1.15) translateX(3px)' },
-          '75%': { transform: 'rotate(10deg) scale(1.1) translateX(-3px)' },
+        subtleWiggle: {
+          '0%, 100%': { transform: 'rotate(-2deg) scale(1.02) translateX(-1px) translateY(0.5px)' },
+          '50%': { transform: 'rotate(2deg) scale(1.02) translateX(1px) translateY(-0.5px)' },
+        },
+        mediumWiggle: {
+          '0%, 100%': { transform: 'rotate(-5deg) scale(1.05) translateX(-3px) translateY(1px)' },
+          '50%': { transform: 'rotate(5deg) scale(1.05) translateX(3px) translateY(-1px)' },
+        },
+        strongWiggle: {
+          '0%, 100%': { transform: 'skewX(-10deg) skewY(8deg) scale(1.1) rotate(-6deg)' },
+          '50%':   { transform: 'skewX(10deg) skewY(-8deg) scale(1.1) rotate(6deg)' },
+        },
+        extremePopWiggle: {
+          '0%, 100%': { transform: 'skewX(-25deg) skewY(20deg) scale(1.90) rotate(-15deg)' },
+          '25%':   { transform: 'skewX(25deg) skewY(-20deg) scale(2.0) rotate(15deg)' },
+          '50%':   { transform: 'skewX(-20deg) skewY(25deg) scale(1.85) rotate(-10deg)' },
+          '75%':   { transform: 'skewX(20deg) skewY(-25deg) scale(1.95) rotate(10deg)' },
         },
         boing: {
           '0%': { transform: 'scale(0.5) translateY(0)', opacity: '0' },
-          '50%': { transform: 'scale(1.2) translateY(-10px)', opacity: '1' },
-          '70%': { transform: 'scale(0.9) translateY(0)' },
-          '80%': { transform: 'scale(1.1) translateY(-5px)' },
-          '90%': { transform: 'scale(0.95) translateY(0)' },
+          '50%': { transform: 'scale(1.1) translateY(-5px)', opacity: '1' },
+          '70%': { transform: 'scale(0.95) translateY(0)' },
+          '80%': { transform: 'scale(1.05) translateY(-2px)' },
+          '90%': { transform: 'scale(0.98) translateY(0)' },
           '100%': { transform: 'scale(1) translateY(0)', opacity: '1' },
-        },
-        'pulse-glow': {
-          '0%, 100%': { boxShadow: '0 0 15px 5px rgba(236, 72, 153, 0.4)', transform: 'scale(1)' },
-          '50%': { boxShadow: '0 0 25px 10px rgba(236, 72, 153, 0.7)', transform: 'scale(1.05)' },
         },
       },
       animation: {
-        wiggle: 'wiggle 0.6s ease-in-out infinite',
-        boing: 'boing 0.8s ease-out forwards',
-        'pulse-glow': 'pulse-glow 1.5s ease-in-out infinite alternate',
+        boing: 'boing 0.7s ease-out forwards',
+        subtleWiggle: 'subtleWiggle 1.2s ease-in-out infinite alternate',
+        mediumWiggle: 'mediumWiggle 0.6s ease-in-out infinite alternate',
+        strongWiggle: 'strongWiggle 0.3s ease-in-out infinite alternate',
+        extremePopWiggle: 'extremePopWiggle 0.4s linear infinite alternate',
       },
     },
   },

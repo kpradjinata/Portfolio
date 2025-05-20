@@ -1,11 +1,106 @@
-import React from 'react';
-import useInView from '../hooks/useInView'; // Import useInView
-// import './Contact.css'; // Removed
+import React, { useEffect, useRef, useState } from 'react';
+import useInView from '../hooks/useInView';
 
 const Contact = () => {
   const [titleRef, isTitleInView] = useInView({ threshold: 0.3, rootMargin: '0px 0px -50px 0px' });
   const [textRef, isTextInView] = useInView({ threshold: 0.5, rootMargin: '0px 0px -50px 0px' });
   const [buttonContainerRef, isButtonContainerInView] = useInView({ threshold: 0.8, rootMargin: '0px 0px -20px 0px' });
+
+  const emailButtonRef = useRef(null);
+  const [buttonAnimationClass, setButtonAnimationClass] = useState(''); // Simplified to single class string
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    // Initial animation: boing then settles to mediumWiggle
+    if (isButtonContainerInView) {
+      setButtonAnimationClass('animate-boing animate-mediumWiggle [animation-play-state:running] [animation-delay:0s,0.7s]');
+      // After boing finishes (0.7s), mediumWiggle continues.
+      // We rely on animate-boing being 'forwards' fill mode.
+    } else {
+      setButtonAnimationClass(''); // No animation if not in view
+    }
+  }, [isButtonContainerInView]);
+
+
+  useEffect(() => {
+    const button = emailButtonRef.current;
+    if (!button || !isButtonContainerInView) return;
+
+    // Base class if boing is done or wasn't applied
+    let baseWiggle = 'animate-mediumWiggle';
+    if (buttonAnimationClass.includes('animate-boing')) {
+        // If boing is still the primary part of the class, respect it.
+        // This effect mostly handles mouse move after initial boing.
+    } else if (!isButtonContainerInView) {
+        setButtonAnimationClass(''); // Clear if scrolled out of view
+        return;
+    }
+
+    const handleMouseMove = (event) => {
+      if (!emailButtonRef.current) return;
+      const rect = emailButtonRef.current.getBoundingClientRect();
+      const buttonCenterX = rect.left + rect.width / 2;
+      const buttonCenterY = rect.top + rect.height / 2;
+      
+      const distance = Math.sqrt(
+        Math.pow(event.clientX - buttonCenterX, 2) +
+        Math.pow(event.clientY - buttonCenterY, 2)
+      );
+
+      let newWiggleClass = 'animate-mediumWiggle'; // Default if far or after boing
+
+      if (isHovering) {
+        newWiggleClass = 'animate-extremePopWiggle';
+      } else if (distance < 100) { // Closest proximity (strongest non-hover wiggle)
+        newWiggleClass = 'animate-strongWiggle';
+      } else if (distance < 200) { // Medium proximity
+        newWiggleClass = 'animate-mediumWiggle';
+      } else if (distance < 350) { // Furthest noticeable proximity
+        newWiggleClass = 'animate-subtleWiggle';
+      } else { // Outside proximity range, revert to a default or less noticeable wiggle
+        newWiggleClass = 'animate-subtleWiggle'; // Or even remove class if you want it static when far
+      }
+      
+      // If boing is active and hasn't finished, we might not want to override it immediately
+      // For simplicity, this logic assumes boing completes, then mouse interactions take over wiggle.
+      // The initial useEffect sets boing then mediumWiggle.
+      // This mousemove effect will then adjust the wiggle part.
+      if (buttonAnimationClass.includes('animate-boing') && !isHovering && distance > 350) {
+        // If boing is set and mouse is far and not hovering, let boing finish into mediumWiggle as set initially.
+        // Or, if boing has a `forwards` fill and we want to ensure it's not overridden by a far-mouse subtleWiggle too soon:
+        // This part is tricky without more complex state management for the boing animation completion.
+        // The current initial setup tries to handle this: `animate-boing animate-mediumWiggle [animation-delay:0s,0.7s]`
+        // This means mediumWiggle starts *after* boing. So this mousemove logic should primarily just set the wiggle.
+      }
+
+      setButtonAnimationClass(newWiggleClass);
+    };
+
+    const handleMouseEnter = () => setIsHovering(true);
+    const handleMouseLeave = () => {
+      setIsHovering(false);
+      // When mouse leaves, revert to a base wiggle depending on distance, or default to mediumWiggle
+      // The next mousemove event will handle this, or we can set a default here.
+      // For now, relying on next mousemove event to set appropriate non-hover wiggle.
+      // Or explicitly set to mediumWiggle if that's the desired resting state post-hover:
+      // setButtonAnimationClass('animate-mediumWiggle'); 
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    button.addEventListener('mouseenter', handleMouseEnter);
+    button.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (button) {
+        button.removeEventListener('mouseenter', handleMouseEnter);
+        button.removeEventListener('mouseleave', handleMouseLeave);
+      }
+    };
+  // Depend on isButtonContainerInView to re-attach listeners if element was hidden then shown
+  // Depend on isHovering to immediately re-evaluate classes on hover change
+  // buttonAnimationClass is not a dependency here to avoid loops if setButtonAnimationClass triggers re-render and this effect again with old class value.
+  }, [isButtonContainerInView, isHovering]);
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-gray-950 text-white">
@@ -27,15 +122,16 @@ const Contact = () => {
         <div 
           ref={buttonContainerRef} 
           className={`flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-6 
-                      ${isButtonContainerInView ? 'opacity-100' : 'opacity-0'}`}
+                      transition-opacity duration-500 ${isButtonContainerInView ? 'opacity-100' : 'opacity-0'}`}
         >
           <a 
+            ref={emailButtonRef}
             href="mailto:kepradjinata@gmail.com"
-            className={`bg-blue-500 text-white font-semibold py-3 px-8 rounded-lg shadow-md text-lg 
-                        transition-all duration-300 ease-in-out transform 
-                        hover:bg-purple-600 hover:text-yellow-200 hover:scale-[1.6] hover:rotate-[-15deg] hover:shadow-2xl
-                        focus:outline-none focus:ring-4 focus:ring-purple-400
-                        ${isButtonContainerInView ? 'animate-boing animate-wiggle animate-pulse-glow [animation-delay:0.8s]' : 'opacity-0'}`
+            className={`bg-blue-500 text-white font-semibold py-2 px-6 rounded-md shadow-md text-base 
+                        transition-colors duration-300 ease-in-out transform 
+                        hover:bg-purple-600 hover:text-yellow-200 
+                        focus:outline-none focus:ring-4 focus:ring-green-400
+                        ${buttonAnimationClass}` // Apply dynamic class (single string now)
                       }
           >
             Email Me
@@ -46,4 +142,4 @@ const Contact = () => {
   );
 };
 
-export default Contact; 
+export default Contact;

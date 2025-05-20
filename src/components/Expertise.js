@@ -1,10 +1,11 @@
 import React from 'react';
 import useInView from '../hooks/useInView';
+import { FaReact, FaNodeJs, FaPython, FaApple } from 'react-icons/fa';
 
 // Placeholder for potential icons (e.g., from react-icons)
 // import { FaReact, FaNodeJs, FaPython } from 'react-icons/fa';
 
-const ExpertiseItem = ({ title, description }) => {
+const ExpertiseItem = ({ title, description, icon }) => {
   const [itemRef, isItemInView] = useInView({ threshold: 0.25, rootMargin: '0px 0px -20px 0px' });
 
   return (
@@ -12,9 +13,10 @@ const ExpertiseItem = ({ title, description }) => {
       ref={itemRef}
       className={`bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 
                  transform hover:scale-105 transition-all duration-500 ease-in-out
+                 flex flex-col items-center text-center
                  ${isItemInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
     >
-      {/* {icon && <div className="text-blue-400 text-4xl mb-4">{icon}</div>} */}
+      {icon && <div className="text-blue-400 text-5xl mb-4">{icon}</div>}
       <h3 className="text-2xl font-semibold text-blue-400 mb-3">{title}</h3>
       <p className="text-gray-300 leading-relaxed flex-grow">{description}</p>
     </div>
@@ -30,22 +32,22 @@ const Expertise = () => {
     {
       title: 'Frontend Development',
       description: 'Building responsive UIs with React, TypeScript, & Tailwind CSS.',
-      // icon: <FaReact /> 
+      icon: <FaReact /> 
     },
     {
       title: 'Backend Development',
       description: 'Crafting robust APIs with Node.js, Python, & various databases.',
-      // icon: <FaNodeJs />
+      icon: <FaNodeJs />
     },
     {
       title: 'iOS Development',
-      description: 'Creating engaging iOS apps using Swift & ARKit.',
-      // icon: <FaApple /> // Or a more specific iOS icon
+      description: 'Creating engaging iOS apps using Swift.',
+      icon: <FaApple />
     },
     {
       title: 'Machine Learning',
-      description: 'Applying ML (CoreML, PyBKT, NLP) for data insights.',
-      // icon: <FaPython /> // Or a more generic ML icon
+      description: 'Applying ML for data insights.',
+      icon: <FaPython />
     }
   ];
 
@@ -59,12 +61,13 @@ const Expertise = () => {
         >
           Expertise
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"> {/* Adjusted grid for potentially more items */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {expertiseAreas.map((item, index) => (
             <ExpertiseItem 
               key={item.title} 
               title={item.title} 
               description={item.description} 
+              icon={item.icon}
             />
           ))}
         </div>
