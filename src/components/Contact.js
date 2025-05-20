@@ -5,7 +5,7 @@ import useInView from '../hooks/useInView'; // Import useInView
 const Contact = () => {
   const [titleRef, isTitleInView] = useInView({ threshold: 0.3, rootMargin: '0px 0px -50px 0px' });
   const [textRef, isTextInView] = useInView({ threshold: 0.5, rootMargin: '0px 0px -50px 0px' });
-  const [buttonRef, isButtonInView] = useInView({ threshold: 0.8, rootMargin: '0px 0px -20px 0px' });
+  const [buttonContainerRef, isButtonContainerInView] = useInView({ threshold: 0.8, rootMargin: '0px 0px -20px 0px' });
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-gray-950 text-white">
@@ -25,33 +25,21 @@ const Contact = () => {
           Feel free to reach out! Whether you have a question or just want to say hi, I'll try my best to get back to you!
         </p>
         <div 
-          ref={buttonRef}
-          className={`flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 
-                      ${isButtonInView ? 'opacity-100' : 'opacity-0'}`}
+          ref={buttonContainerRef} 
+          className={`flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-6 
+                      ${isButtonContainerInView ? 'opacity-100' : 'opacity-0'}`}
         >
           <a 
-            href="mailto:youremail@example.com" 
+            href="mailto:kepradjinata@gmail.com"
             className={`bg-blue-500 text-white font-semibold py-3 px-8 rounded-lg shadow-md text-lg 
-                        transition-all duration-300 ease-in-out transform  /* Base transitions */
-                        hover:bg-pink-500 hover:text-yellow-300 hover:scale-150 hover:rotate-12 hover:shadow-2xl /* Obnoxious hover */
-                        focus:outline-none focus:ring-4 focus:ring-pink-300 /* Focus style */
-                        ${isButtonInView ? 'animate-boing animate-wiggle [animation-delay:0.8s]' : 'opacity-0'}` // Entrance and continuous animation
-                      } // Added animation-delay so wiggle starts after boing
+                        transition-all duration-300 ease-in-out transform 
+                        hover:bg-purple-600 hover:text-yellow-200 hover:scale-[1.6] hover:rotate-[-15deg] hover:shadow-2xl
+                        focus:outline-none focus:ring-4 focus:ring-purple-400
+                        ${isButtonContainerInView ? 'animate-boing animate-wiggle animate-pulse-glow [animation-delay:0.8s]' : 'opacity-0'}`
+                      }
           >
             Email Me
           </a>
-          {/* Add more links like LinkedIn, GitHub as buttons or icons */}
-          {/* Example for a LinkedIn button (you might want to use an icon instead) */}
-          {/* 
-          <a 
-            href="https://linkedin.com/in/yourprofile" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 text-lg transform hover:scale-105"
-          >
-            LinkedIn
-          </a> 
-          */}
         </div>
       </div>
     </section>
