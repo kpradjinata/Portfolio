@@ -1,6 +1,6 @@
 # My Portfolio Website
 
-This is a public portfolio website to showcase my projects and skills.
+This is a public portfolio website to showcase my projects and skills, built with React and Tailwind CSS.
 
 ## Getting Started
 
@@ -28,30 +28,37 @@ Ensure you have Node.js and npm (or yarn) installed on your system.
 ### Running the Development Server
 
 ```bash
-npm run dev
+npm start
 # or
-# yarn dev
+# yarn start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) (or your configured port) with your browser to see the result.
 
 ## Technologies Used
 
-* [Next.js](https://nextjs.org/) - React framework
-* [React](https://reactjs.org/) - JavaScript library for building user interfaces
-* [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-* _(Add other technologies you are using)_
+* [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+* [React Router](https://reactrouter.com/) - For client-side navigation between pages.
+* [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapid UI development.
+* HTML5 & CSS3
 
 ## Features
 
-* _(List the key features of your portfolio)_
-* _Example: Responsive design_
-* _Example: Project showcase section_
-* _Example: Contact form_
+* Responsive design for optimal viewing on all devices.
+* Dynamic project showcase with summary cards.
+* Individual detail pages for each project, providing comprehensive information.
+* Client-side routing for a seamless single-page application (SPA) experience.
+* Sections for Home, Showcase (potentially for featured items), Work/Experience, and Contact.
 
 ## Deployment
 
-_(Describe how to deploy the project, or where it is deployed. e.g., Vercel, Netlify)_
+This project is ready to be deployed to any static site hosting service. Some popular options include:
+
+* [Vercel](https://vercel.com/)
+* [Netlify](https://www.netlify.com/)
+* [GitHub Pages](https://pages.github.com/)
+
+To deploy, typically you would run `npm run build` (or `yarn build`) which creates a `build` folder with the production-ready static assets. You then deploy the contents of this `build` folder to your chosen hosting provider. Refer to the documentation of your hosting provider for specific deployment instructions.
 
 ## License
 
