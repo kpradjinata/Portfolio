@@ -22,6 +22,9 @@ const ExpertiseItem = ({ title, description }) => {
 };
 
 const Expertise = () => {
+  const [titleRef, isTitleInView] = useInView({ threshold: 0.5, rootMargin: '0px 0px -50px 0px' });
+  const [footerTextRef, isFooterTextInView] = useInView({ threshold: 0.8, rootMargin: '0px 0px -20px 0px' });
+
   // Suggestion: Populate this with your actual areas of expertise, skills, or technologies
   const expertiseAreas = [
     {
@@ -49,7 +52,13 @@ const Expertise = () => {
   return (
     <section id="expertise" className="py-16 md:py-24 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 uppercase tracking-wider">Expertise</h2>
+        <h2 
+          ref={titleRef}
+          className={`text-4xl font-bold text-center mb-12 uppercase tracking-wider transition-all duration-700 ease-out 
+                      ${isTitleInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+        >
+          Expertise
+        </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"> {/* Adjusted grid for potentially more items */}
           {expertiseAreas.map((item, index) => (
             <ExpertiseItem 
@@ -59,7 +68,11 @@ const Expertise = () => {
             />
           ))}
         </div>
-        <p className="text-center mt-12 text-gray-400">
+        <p 
+          ref={footerTextRef}
+          className={`text-center mt-12 text-gray-400 transition-all duration-700 ease-out delay-300 
+                      ${isFooterTextInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+        >
           Continuously learning and expanding my technical skillset.
         </p>
       </div>
