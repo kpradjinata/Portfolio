@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import useInView from '../hooks/useInView';
 
 // Placeholder Icon Component
 const PlaceholderIcon = () => (
@@ -17,11 +18,7 @@ const PlaceholderIcon = () => (
 );
 
 const ProjectCard = ({ project }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const [cardRef, isCardInView] = useInView({ threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
   if (!project) {
     return null;
@@ -29,11 +26,12 @@ const ProjectCard = ({ project }) => {
 
   return (
     <Link 
+      ref={cardRef}
       to={`/project/${project.id}`} 
       className={`block border rounded-lg p-6 shadow-lg bg-white 
                  hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 
                  transition-all duration-500 ease-in-out transform hover:-translate-y-1
-                 ${isMounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                 ${isCardInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
     >
       <div className="flex flex-col items-center text-center">
         {/* You can replace PlaceholderIcon with an actual image or specific icon later */}

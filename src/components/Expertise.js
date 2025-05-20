@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import useInView from '../hooks/useInView';
 
 // Placeholder for potential icons (e.g., from react-icons)
 // import { FaReact, FaNodeJs, FaPython } from 'react-icons/fa';
 
-const ExpertiseItem = ({ title, description, delay }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsMounted(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
+const ExpertiseItem = ({ title, description }) => {
+  const [itemRef, isItemInView] = useInView({ threshold: 0.25, rootMargin: '0px 0px -20px 0px' });
 
   return (
     <div 
+      ref={itemRef}
       className={`bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 
                  transform hover:scale-105 transition-all duration-500 ease-in-out
-                 ${isMounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-      style={{ transitionDelay: `${isMounted ? 0 : delay}ms`}}
+                 ${isItemInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
     >
       {/* {icon && <div className="text-blue-400 text-4xl mb-4">{icon}</div>} */}
       <h3 className="text-2xl font-semibold text-blue-400 mb-3">{title}</h3>
@@ -60,7 +56,6 @@ const Expertise = () => {
               key={item.title} 
               title={item.title} 
               description={item.description} 
-              delay={index * 150}
             />
           ))}
         </div>

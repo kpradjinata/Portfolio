@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import useInView from '../hooks/useInView';
 // import './Home.css'; // Removed
 
 // You can place your actual image in src/assets/images/your-image.jpg
 // import profileImage from '../assets/images/your-profile-image.jpg';
 
 const Home = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsMounted(true), 100); // Slight delay for effect
-    return () => clearTimeout(timer);
-  }, []);
+  // useInView hook with options. Threshold 0.1 means animation triggers when 10% of the element is visible.
+  const [homeRef, isHomeInView] = useInView({ threshold: 0.1 });
 
   return (
     <section 
+      ref={homeRef} // Attach the ref to the section
       id="home" 
       className={`min-h-screen flex items-center justify-center bg-black text-white 
                  transition-all duration-1000 ease-out 
-                 ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                 ${isHomeInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
     >
       <div className="container mx-auto px-4 py-16">
         <div className="flex flex-col md:flex-row items-center justify-around text-center md:text-left space-y-12 md:space-y-0 md:space-x-8">
