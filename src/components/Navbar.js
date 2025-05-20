@@ -37,7 +37,8 @@ const Navbar = () => {
         {/* Navigation Links (Desktop) */}
         <ul className="hidden md:flex space-x-6">
           <li><a href="#home" className="hover:text-blue-400 transition-colors duration-300">Home</a></li>
-          <li><a href="#work" className="hover:text-blue-400 transition-colors duration-300">Work</a></li>
+          <li><a href="#highlighted-projects" className="hover:text-blue-400 transition-colors duration-300">Spotlight</a></li>
+          <li><a href="#all-projects-section" className="hover:text-blue-400 transition-colors duration-300">Projects</a></li>
           <li><a href="#contact" className="hover:text-blue-400 transition-colors duration-300">Contact</a></li>
         </ul>
       </div>
@@ -46,7 +47,8 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden pt-2 pb-3 space-y-1 sm:px-3">
           <a href="#home" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 hover:text-blue-300 transition-colors duration-300">Home</a>
-          <a href="#work" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 hover:text-blue-300 transition-colors duration-300">Work</a>
+          <a href="#highlighted-projects" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 hover:text-blue-300 transition-colors duration-300">Spotlight</a>
+          <a href="#all-projects-section" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 hover:text-blue-300 transition-colors duration-300">Projects</a>
           <a href="#contact" onClick={toggleMenu} className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700 hover:text-blue-300 transition-colors duration-300">Contact</a>
         </div>
       )}

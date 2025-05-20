@@ -24,7 +24,7 @@ export const projects = [
     ],
     impact: 'Binder redefines modern education by making collaborative learning more accessible and effective. By leveraging PyBKT, Binder ensures that student groups are optimized for peer learning, fostering engagement and success. It empowers students and educators to focus on meaningful interactions by automating repetitive tasks like quiz generation and performance tracking.',
     skills: ['React.js', 'Python (Programming Language)', 'TypeScript', 'Convex', 'HTML', 'Large Language Models (LLM)'],
-    githubUrl: 'https://github.com/your-username/binder', // Replace with actual URL
+    githubUrl: 'https://github.com/your-username/binder', // Please update if you have a specific URL for Binder
   },
   {
     id: 'homelink',
@@ -50,7 +50,7 @@ export const projects = [
     ],
     impact: 'HomeLink empowers individuals and organizations to address homelessness through data-driven insights and real-time reporting. The app strengthens community ties by encouraging collaboration and fostering an inclusive approach to resolving one of society\'s most pressing challenges.',
     skills: ['Python (Programming Language)', 'Swift (Programming Language)', 'GPS Applications', 'Machine Learning'],
-    githubUrl: 'https://github.com/your-username/homelink', // Replace with actual URL
+    githubUrl: 'https://github.com/kpradjinata/HomeLink',
   },
   {
     id: 'quickfit',
@@ -73,7 +73,7 @@ export const projects = [
     ],
     impact: 'Quickfit empowers users to achieve their fitness goals by combining innovative motion tracking with real-time insights. It bridges the gap between traditional fitness tracking and immersive technology, creating a more engaging and effective workout experience.',
     skills: ['Swift (Programming Language)', 'Python (Programming Language)', 'Augmented Reality (AR)', 'Machine Learning'],
-    githubUrl: 'https://github.com/your-username/quickfit', // Replace with actual URL
+    githubUrl: 'https://github.com/kpradjinata/Quickfit',
   },
   {
     id: 'serendipity',
@@ -95,7 +95,7 @@ export const projects = [
     ],
     impact: 'Serendipity addresses the stigma surrounding mental health by offering a private, secure, and accessible platform. It empowers users to explore their feelings, receive guidance, and gain actionable insights for self-improvement.',
     skills: ['Swift (Programming Language)', 'Python (Programming Language)', 'Natural Language Processing (NLP)', 'Xcode'],
-    githubUrl: 'https://github.com/your-username/serendipity', // Replace with actual URL
+    githubUrl: 'https://github.com/kpradjinata/Serendipity',
   },
   {
     id: 'picture-perfect',
@@ -118,7 +118,7 @@ export const projects = [
     ],
     impact: 'PicturePerfect supports users in delivering impactful presentations by improving their confidence and communication skills. The app addresses the nuances of real-time feedback and ensures presentations are audience-focused.',
     skills: ['Python (Programming Language)', 'Swift (Programming Language)', 'Xcode'],
-    githubUrl: 'https://github.com/your-username/pictureperfect', // Replace with actual URL
+    githubUrl: 'https://github.com/kpradjinata/PicturePerfect',
   },
   {
     id: 'bread-and-butter',
@@ -143,7 +143,7 @@ export const projects = [
     ],
     impact: 'This project directly supports the local restaurant community by enhancing their ability to connect with customers and manage orders efficiently. It also served as a platform for us to refine skills in full-stack development and API integration.',
     skills: ['Swift (Programming Language)', 'Python (Programming Language)', 'Amazon Web Services (AWS)', 'Xcode', 'Google Cloud Platform (GCP)'],
-    githubUrl: 'https://github.com/your-username/epsilonhacks', // Replace with actual URL
+    githubUrl: 'https://github.com/kpradjinata/Bread-and-Butter',
   },
   {
     id: 'food-for-thought',
@@ -166,6 +166,6 @@ export const projects = [
     ],
     impact: 'N/A', // Impact was not specified, providing a default
     skills: ['Python (Programming Language)', 'Django', 'Google Cloud Platform (GCP)'],
-    githubUrl: 'https://github.com/your-username/sigmahacks', // Replace with actual URL
+    githubUrl: 'https://github.com/kpradjinata/Sigmahacks',
   },
 ]; 

@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import Showcase from './components/Showcase';
-import Work from './components/Work';
+import Expertise from './components/Expertise';
+import HighlightedProjects from './components/HighlightedProjects';
 import ProjectsList from './components/ProjectsList';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -20,8 +20,8 @@ function App() {
             <Route path="/" element={
               <>
                 <Home />
-                <Showcase />
-                <Work />
+                <Expertise />
+                <HighlightedProjects />
                 <ProjectsList />
                 <Contact />
               </>
