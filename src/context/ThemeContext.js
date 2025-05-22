@@ -17,6 +17,10 @@ export const ThemeProvider = ({ children }) => {
     return 'light';
   });
 
+  const [accentColor, setAccentColor] = useState(() => {
+    return localStorage.getItem('accentColor') || 'blue-500';
+  });
+
   useEffect(() => {
     const root = window.document.documentElement;
     if (theme === 'dark') {
@@ -27,12 +31,18 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  useEffect(() => {
+    localStorage.setItem('accentColor', accentColor);
+    // Optionally, set a CSS variable for accent color
+    document.documentElement.style.setProperty('--accent-color', `var(--tw-${accentColor})`);
+  }, [accentColor]);
+
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, accentColor, setAccentColor }}>
       {children}
     </ThemeContext.Provider>
   );

@@ -2,9 +2,6 @@ import React from 'react';
 import useInView from '../hooks/useInView';
 import { FaReact, FaNodeJs, FaPython, FaApple } from 'react-icons/fa';
 
-// Placeholder for potential icons (e.g., from react-icons)
-// import { FaReact, FaNodeJs, FaPython } from 'react-icons/fa';
-
 const ExpertiseItem = ({ title, description, icon }) => {
   const [itemRef, isItemInView] = useInView({ threshold: 0.25, rootMargin: '0px 0px -20px 0px' });
 
@@ -29,7 +26,6 @@ const Expertise = () => {
   const [titleRef, isTitleInView] = useInView({ threshold: 0.5, rootMargin: '0px 0px -50px 0px' });
   const [footerTextRef, isFooterTextInView] = useInView({ threshold: 0.8, rootMargin: '0px 0px -20px 0px' });
 
-  // Suggestion: Populate this with your actual areas of expertise, skills, or technologies
   const expertiseAreas = [
     {
       title: 'Frontend Development',

@@ -63,3 +63,27 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-600 dark:bg-gray-300;
 }
+
+:root {
+  --accent-color: #3b82f6; /* Default to Tailwind blue-500 */
+}
+
+/* Focus styles for accessibility */
+a:focus, button:focus, input:focus, [tabindex]:focus, .focus-visible, .focus\:ring-2:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--accent-color);
+}
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

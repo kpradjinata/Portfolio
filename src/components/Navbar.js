@@ -4,8 +4,16 @@ import ThemeToggle from './ThemeToggle'; // Import ThemeToggle
 import { useTheme } from '../context/ThemeContext'; // Import useTheme
 // import './Navbar.css'; // Removed
 
+const ACCENT_COLORS = [
+  { name: 'Blue', value: 'blue-500', class: 'bg-blue-500' },
+  { name: 'Purple', value: 'purple-500', class: 'bg-purple-500' },
+  { name: 'Green', value: 'green-500', class: 'bg-green-500' },
+  { name: 'Orange', value: 'orange-500', class: 'bg-orange-500' },
+  { name: 'Pink', value: 'pink-500', class: 'bg-pink-500' },
+];
+
 const Navbar = () => {
-  const { theme } = useTheme(); // Get current theme
+  const { theme, accentColor, setAccentColor } = useTheme(); // Get current theme and accent color
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);

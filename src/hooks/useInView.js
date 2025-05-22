@@ -10,6 +10,12 @@ const useInView = (options) => {
   const ref = useRef(null);
 
   useEffect(() => {
+    // Respect prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      setIsInView(true);
+      return;
+    }
     const observer = new IntersectionObserver(([entry]) => {
       // Update state based on whether the element is currently intersecting the viewport.
       setIsInView(entry.isIntersecting);

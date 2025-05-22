@@ -1,15 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useInView from '../hooks/useInView';
 import profileImage from '../assets/images/profile.png';
 import designerGraphic from '../assets/images/designer-graphic.jpg';
 import developerGraphic from '../assets/images/developer-graphic.png';
 import { useTheme } from '../context/ThemeContext';
 
+// Typewriter effect hook
+function useTypewriter(words, speed = 80, pause = 1200) {
+  const [index, setIndex] = React.useState(0);
+  const [display, setDisplay] = React.useState('');
+  const [isDeleting, setIsDeleting] = React.useState(false);
+
+  React.useEffect(() => {
+    let timeout;
+    const current = words[index % words.length];
+    if (!isDeleting) {
+      if (display.length < current.length) {
+        timeout = setTimeout(() => setDisplay(current.slice(0, display.length + 1)), speed);
+      } else {
+        timeout = setTimeout(() => setIsDeleting(true), pause);
+      }
+    } else {
+      if (display.length > 0) {
+        timeout = setTimeout(() => setDisplay(current.slice(0, display.length - 1)), speed / 2);
+      } else {
+        setIsDeleting(false);
+        setIndex((i) => i + 1);
+      }
+    }
+    return () => clearTimeout(timeout);
+  }, [display, isDeleting, index, words, speed, pause]);
+  return display;
+}
+
 const Home = () => {
   const { theme } = useTheme();
   const [homeRef, isHomeInView] = useInView({ threshold: 0.1 });
   const [arrowRef, isArrowInView] = useInView({ threshold: 0.1, triggerOnce: false });
-
+  const designerText = useTypewriter(['Designer']);
+  const developerText = useTypewriter(['Developer']);
+  // Easter egg state
+  const [easterEgg, setEasterEgg] = useState(false);
   return (
     <section 
       ref={homeRef}
@@ -20,54 +51,59 @@ const Home = () => {
     >
       <div className="container mx-auto px-4 pt-16 pb-16 md:pt-20">
         <div className="flex flex-col md:flex-row items-stretch justify-around text-center md:text-left space-y-12 md:space-y-0 md:space-x-8">
-          
-          {/* Designer Section - Image with opacity */}
+          {/* Designer Section - Image with opacity and parallax */}
           <div 
-            className={`md:w-1/3 
-                        transition-all duration-700 ease-out transform 
-                        relative min-h-[450px] md:min-h-[500px] rounded-lg overflow-hidden 
+            className={`md:w-1/3 transition-all duration-700 ease-out transform relative min-h-[450px] md:min-h-[500px] rounded-lg overflow-hidden 
                         ${isHomeInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'}`}
+            style={{
+              backgroundAttachment: 'fixed',
+              backgroundImage: `url(${designerGraphic})`,
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'contain',
+              zIndex: 1
+            }}
           >
-            <img 
-              src={designerGraphic} 
-              alt="Abstract design graphic" 
-              className="absolute inset-0 w-full h-full object-contain opacity-40" 
-            />
-            <div className="relative z-10 p-8 space-y-4 flex flex-col justify-center items-center h-full">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white text-shadow">
-                Designer
+            <div className="relative z-10 p-8 space-y-4 flex flex-col justify-center items-center h-full bg-white/70 dark:bg-black/60">
+              <h1 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400 text-shadow">
+                {designerText}
+                <span className="blinking-cursor">|</span>
               </h1>
               <p className="text-lg text-gray-700 dark:text-gray-200 text-shadow-sm text-center md:text-center">
                 Blending creativity and usability to craft stunning and user-friendly interfaces.
               </p>
             </div>
           </div>
-
-          {/* Profile Image Section */}
-          <div className={`md:w-1/3 flex justify-center items-center transition-all duration-700 ease-out delay-200 transform 
+          {/* Profile Image Section with Easter Egg */}
+          <div className={`md:w-1/3 flex flex-col justify-center items-center transition-all duration-700 ease-out delay-200 transform 
                           ${isHomeInView ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
             <img 
               src={profileImage} 
               alt="Kevin Pradjinata headshot" 
-              className="rounded-full w-56 h-56 md:w-72 md:h-72 object-cover border-4 border-gray-300 dark:border-gray-700 shadow-xl"
+              className={`rounded-full w-56 h-56 md:w-72 md:h-72 object-cover border-4 border-gray-300 dark:border-gray-700 shadow-xl cursor-pointer transition-transform duration-500 ${easterEgg ? 'animate-spin scale-125' : ''}`}
+              loading="lazy"
+              onClick={() => {
+                setEasterEgg(true);
+                setTimeout(() => setEasterEgg(false), 1200);
+                alert('👋 Hi there! Thanks for visiting my portfolio!');
+              }}
             />
           </div>
-
-          {/* Developer Section - Image with opacity and scale */}
+          {/* Developer Section - Image with opacity, scale, and left alignment */}
           <div 
-            className={`md:w-1/3 
-                        transition-all duration-700 ease-out transform 
-                        relative min-h-[450px] md:min-h-[500px] rounded-lg overflow-hidden 
+            className={`md:w-1/3 transition-all duration-700 ease-out transform relative min-h-[450px] md:min-h-[500px] rounded-lg overflow-hidden 
                         ${isHomeInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'}`}
           >
             <img 
               src={developerGraphic} 
               alt="Abstract code graphic" 
               className="absolute inset-0 w-full h-full object-contain opacity-55 origin-left scale-137.5"
+              loading="lazy"
             />
-            <div className="relative z-10 p-8 space-y-4 flex flex-col justify-center items-center h-full">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white text-shadow">
-                Developer
+            <div className="relative z-10 p-8 space-y-4 flex flex-col justify-center items-center h-full bg-white/70 dark:bg-black/60">
+              <h1 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400 text-shadow">
+                {developerText}
+                <span className="blinking-cursor">|</span>
               </h1>
               <p className="text-lg text-gray-700 dark:text-gray-200 text-shadow-sm text-center md:text-center">
                 Committed to creating robust solutions with a focus on efficiency and adaptability to emerging technologies.
@@ -76,7 +112,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
       {/* Scroll Down Arrow */}
       {isHomeInView && (
         <div 
@@ -95,6 +130,7 @@ const Home = () => {
           </svg>
         </div>
       )}
+      <style>{`.blinking-cursor{animation:blink 1s steps(2,start) infinite}@keyframes blink{to{opacity:.0}}`}</style>
     </section>
   );
 };
