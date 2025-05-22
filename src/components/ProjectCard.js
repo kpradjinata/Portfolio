@@ -5,7 +5,7 @@ import useInView from '../hooks/useInView';
 // Placeholder Icon Component
 const PlaceholderIcon = () => (
   <svg 
-    className="w-16 h-16 text-gray-400 mb-4" 
+    className="w-16 h-16 text-gray-500 dark:text-gray-400 mb-4"
     fill="none" 
     strokeLinecap="round" 
     strokeLinejoin="round" 
@@ -28,8 +28,10 @@ const ProjectCard = ({ project }) => {
     <Link 
       ref={cardRef}
       to={`/project/${project.id}`} 
-      className={`block border rounded-lg p-6 shadow-lg bg-white 
-                 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 
+      className={`block border rounded-lg p-6 shadow-lg 
+                 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 
+                 border-gray-200 dark:border-gray-700 
+                 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-opacity-50 
                  transition-all duration-500 ease-in-out transform hover:-translate-y-1
                  ${isCardInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
     >
@@ -37,10 +39,10 @@ const ProjectCard = ({ project }) => {
         {/* You can replace PlaceholderIcon with an actual image or specific icon later */}
         {/* e.g., <img src={project.iconUrl} alt={project.title} className="w-16 h-16 mb-4 rounded-full" /> */}
         <PlaceholderIcon />
-        <h3 className="text-xl font-semibold mb-1 text-gray-800">{project.title}</h3>
-        <p className="text-sm text-gray-500">{project.date}</p>
+        <h3 className="text-xl font-semibold mb-1 text-gray-800 dark:text-white">{project.title}</h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400">{project.date}</p>
         {project.hackathonWin && (
-          <p className="text-xs text-green-600 font-medium mt-1">{project.hackathonWin}</p>
+          <p className="text-xs text-green-600 dark:text-green-400 font-medium mt-1">{project.hackathonWin}</p>
         )}
       </div>
     </Link>

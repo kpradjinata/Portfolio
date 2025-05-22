@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Expertise from './components/Expertise';
@@ -36,13 +37,15 @@ const AnimatedRoutes = () => {
 
 function App() {
   return (
-    <Router>
-      <div className="App" lang="en">
-        <Navbar />
-        <AnimatedRoutes />
-        <Footer />
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <div className="App" lang="en">
+          <Navbar />
+          <AnimatedRoutes />
+          <Footer />
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 

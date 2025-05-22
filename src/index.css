@@ -10,7 +10,8 @@ html {
 }
 
 body {
-  @apply bg-black text-white antialiased font-sans;
+  @apply font-genos bg-white text-gray-900; /* Default to light theme */
+  @apply dark:bg-black dark:text-gray-100; /* Dark theme styles */
   /* Tailwind's preflight (base styles) will handle margin: 0 */
   /* font-family is also handled by Tailwind or can be configured in tailwind.config.js */
   line-height: 1.6; /* Tailwind provides line-height utilities e.g., leading-normal */
@@ -45,3 +46,20 @@ a {
     margin: 0 auto;
     padding: 0 15px; 
 } */
+
+/* For Webkit-based browsers (Chrome, Safari, newer Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-200 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-500 dark:bg-gray-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600 dark:bg-gray-300;
+}

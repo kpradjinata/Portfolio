@@ -100,10 +100,10 @@ const Contact = () => {
   // Depend on isButtonContainerInView to re-attach listeners if element was hidden then shown
   // Depend on isHovering to immediately re-evaluate classes on hover change
   // buttonAnimationClass is not a dependency here to avoid loops if setButtonAnimationClass triggers re-render and this effect again with old class value.
-  }, [isButtonContainerInView, isHovering]);
+  }, [isButtonContainerInView, isHovering, buttonAnimationClass]);
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-gray-950 text-white">
+    <section id="contact" className="py-16 md:py-24 bg-gray-100 dark:bg-gray-950 text-gray-800 dark:text-white">
       <div className="container mx-auto px-4 text-center">
         <h2 
           ref={titleRef}
@@ -114,7 +114,7 @@ const Contact = () => {
         </h2>
         <p 
           ref={textRef}
-          className={`text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed transition-all duration-700 ease-out delay-200 
+          className={`text-lg text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed transition-all duration-700 ease-out delay-200 
                       ${isTextInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
         >
           Feel free to reach out! Whether you have a question or just want to say hi, I'll try my best to get back to you!
@@ -127,11 +127,13 @@ const Contact = () => {
           <a 
             ref={emailButtonRef}
             href="mailto:kepradjinata@gmail.com"
-            className={`bg-blue-500 text-white font-semibold py-2 px-6 rounded-md shadow-md text-base 
+            className={`font-semibold py-2 px-6 rounded-md shadow-md text-base 
+                        bg-blue-500 text-white 
+                        hover:bg-purple-500 hover:text-yellow-300 
+                        dark:bg-blue-600 dark:hover:bg-purple-600 dark:hover:text-yellow-200 
+                        focus:outline-none focus:ring-4 focus:ring-green-500 dark:focus:ring-green-400 
                         transition-colors duration-300 ease-in-out transform 
-                        hover:bg-purple-600 hover:text-yellow-200 
-                        focus:outline-none focus:ring-4 focus:ring-green-400
-                        ${buttonAnimationClass}` // Apply dynamic class (single string now)
+                        ${buttonAnimationClass}` // Animation classes managed by JS
                       }
           >
             Email Me

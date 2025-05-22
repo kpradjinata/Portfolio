@@ -11,14 +11,16 @@ const ExpertiseItem = ({ title, description, icon }) => {
   return (
     <div 
       ref={itemRef}
-      className={`bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 
+      className={`p-6 rounded-lg shadow-lg border 
+                 bg-gray-50 dark:bg-gray-800 
+                 border-gray-200 dark:border-gray-700 
                  transform hover:scale-105 transition-all duration-500 ease-in-out
                  flex flex-col items-center text-center
                  ${isItemInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
     >
-      {icon && <div className="text-blue-400 text-5xl mb-4">{icon}</div>}
-      <h3 className="text-2xl font-semibold text-blue-400 mb-3">{title}</h3>
-      <p className="text-gray-300 leading-relaxed flex-grow">{description}</p>
+      {icon && <div className="text-blue-500 dark:text-blue-400 text-5xl mb-4">{icon}</div>}
+      <h3 className="text-2xl font-semibold text-blue-500 dark:text-blue-400 mb-3">{title}</h3>
+      <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-grow">{description}</p>
     </div>
   );
 };
@@ -52,7 +54,7 @@ const Expertise = () => {
   ];
 
   return (
-    <section id="expertise" className="py-16 md:py-24 bg-gray-900 text-white">
+    <section id="expertise" className="py-16 md:py-24 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
       <div className="container mx-auto px-4">
         <h2 
           ref={titleRef}
@@ -73,7 +75,7 @@ const Expertise = () => {
         </div>
         <p 
           ref={footerTextRef}
-          className={`text-center mt-12 text-gray-400 transition-all duration-700 ease-out delay-300 
+          className={`text-center mt-12 text-gray-500 dark:text-gray-400 transition-all duration-700 ease-out delay-300 
                       ${isFooterTextInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
         >
           Continuously learning and expanding my technical skillset.
