@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   darkMode: 'class',
   content: [
@@ -10,6 +12,14 @@ module.exports = {
       fontFamily: {
         sans: ['Genos', 'sans-serif'],
         genos: ['Genos', 'sans-serif'],
+      },
+      textShadow: {
+        sm: '0 1px 2px var(--tw-shadow-color, rgba(0,0,0,0.5))',
+        DEFAULT: '0 2px 4px var(--tw-shadow-color, rgba(0,0,0,0.5))',
+        lg: '0 8px 16px var(--tw-shadow-color, rgba(0,0,0,0.5))',
+      },
+      scale: {
+        '137.5': '1.375',
       },
       keyframes: {
         subtleWiggle: {
@@ -38,6 +48,10 @@ module.exports = {
           '90%': { transform: 'scale(0.98) translateY(0)' },
           '100%': { transform: 'scale(1) translateY(0)', opacity: '1' },
         },
+        bounceArrow: {
+          '0%, 100%': { transform: 'translateY(-15%)', animationTimingFunction: 'cubic-bezier(0.8,0,1,1)' },
+          '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0,0,0.2,1)' },
+        }
       },
       animation: {
         boing: 'boing 0.7s ease-out forwards',
@@ -45,9 +59,21 @@ module.exports = {
         mediumWiggle: 'mediumWiggle 0.6s ease-in-out infinite alternate',
         strongWiggle: 'strongWiggle 0.3s ease-in-out infinite alternate',
         extremePopWiggle: 'extremePopWiggle 0.4s linear infinite alternate',
+        bounceArrow: 'bounceArrow 1s infinite',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    }),
+  ],
 }
 
