@@ -3,6 +3,7 @@ import { projects } from '../data/projectData';
 import ProjectCard from './ProjectCard';
 import { Link } from 'react-router-dom';
 import useInView from '../hooks/useInView';
+import projectHighlightImage from '../assets/images/project-highlight.jpg';
 
 const HighlightedProjects = () => {
   const highlighted = Array.isArray(projects) ? projects.slice(0, 3) : [];
@@ -31,10 +32,12 @@ const HighlightedProjects = () => {
             </div>
             <div ref={imageRef} className={`md:w-1/2 flex justify-center md:justify-end transition-all duration-700 ease-out delay-300 transform 
                                 ${isImageInView ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                {/* Image "project-highlight.jpg" sourced from Vecteezy.com under Free License. 
+                    Visible attribution on the website (e.g., in footer) is typically required by Vecteezy's Free License. */}
                 <img 
-                    src="https://via.placeholder.com/450x300?text=Project+Highlights+Banner" 
-                    alt="Project Highlights" 
-                    className="rounded-lg shadow-2xl max-w-md w-full"
+                    src={projectHighlightImage}
+                    alt="Project Highlights Banner"
+                    className="rounded-lg max-w-md w-full"
                 />
             </div>
         </div>
@@ -53,8 +56,8 @@ const HighlightedProjects = () => {
           <div ref={buttonRef} className="text-center">
             <Link 
               to="/#all-projects-section" 
-              className={`inline-block bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-semibold px-10 py-4 rounded-lg transition-all duration-500 ease-in-out text-lg shadow-md hover:shadow-lg transform 
-                          ${isButtonInView ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
+              className={`inline-block bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-semibold px-10 py-4 rounded-lg transition-all duration-500 ease-in-out text-lg shadow-md hover:shadow-lg transform hover:scale-105
+                          ${isButtonInView ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-90 translate-y-2'}`}
               onClick={(e) => {
                 e.preventDefault();
                 const element = document.getElementById('all-projects-section');
