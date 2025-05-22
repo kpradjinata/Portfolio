@@ -10,6 +10,7 @@ import ProjectsList from './components/ProjectsList';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProjectDetailPage from './components/ProjectDetailPage';
+import ScrollToTop from './components/ScrollToTop';
 
 // A wrapper component to handle routed content
 const AnimatedRoutes = () => {
@@ -39,6 +40,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
+        <ScrollToTop />
         <div className="App" lang="en">
           <Navbar />
           <AnimatedRoutes />

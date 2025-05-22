@@ -35,8 +35,18 @@ const Navbar = () => {
   // containerClassName: Tailwind class for the div wrapping each icon+text
   // linkClassName: Tailwind class for the <a> tag itself (excluding hover effects, which are standard)
   const renderSocialLinks = (iconSize = 'w-5 h-5', showText = false, linkClassName = '') => {
-    const iconColor = isScrolled || theme === 'dark' ? 'text-white' : 'text-gray-700';
-    const hoverIconColor = isScrolled || theme === 'dark' ? 'hover:text-blue-300' : 'hover:text-blue-600';
+    let iconColor;
+    let hoverIconColor;
+
+    if (theme === 'dark') {
+      iconColor = 'text-white';
+      hoverIconColor = 'hover:text-blue-300';
+    } else { // theme === 'light'
+      iconColor = 'text-gray-700'; // Consistent dark color for icons in light mode
+      hoverIconColor = 'hover:text-blue-600';
+    }
+    
+    // Mobile specific hover for links that show text (like in the hamburger menu)
     const mobileLinkBgHover = theme === 'dark' ? 'hover:bg-gray-700' : 'hover:bg-gray-200';
     const mobileLinkTextHover = theme === 'dark' ? 'hover:text-blue-300' : 'hover:text-blue-500';
 
@@ -133,7 +143,7 @@ const Navbar = () => {
           <a href="#contact" onClick={toggleMenu} className={`block px-3 py-2 rounded-md text-base font-medium ${mobileLinkHoverBg} ${mobileLinkHoverText} transition-colors duration-300`}>Contact</a>
           <hr className={`my-3 ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`} />
           <div className="px-3 py-2 space-y-3">
-            {renderSocialLinks('w-6 h-6', true, '', 'block p-2 rounded-md')}
+            {renderSocialLinks('w-6 h-6', true, 'block p-2 rounded-md')}
           </div>
         </div>
       </div>

@@ -14,11 +14,11 @@ const Home = () => {
     <section 
       ref={homeRef}
       id="home" 
-      className={`min-h-screen flex items-start justify-center relative
+      className={`min-h-[85vh] flex items-start justify-center relative
                  bg-white text-gray-800 dark:bg-black dark:text-white 
                  overflow-x-hidden`}
     >
-      <div className="container mx-auto px-4 pt-24 pb-16 md:pt-32">
+      <div className="container mx-auto px-4 pt-16 pb-16 md:pt-20">
         <div className="flex flex-col md:flex-row items-stretch justify-around text-center md:text-left space-y-12 md:space-y-0 md:space-x-8">
           
           {/* Designer Section - Image with opacity */}
