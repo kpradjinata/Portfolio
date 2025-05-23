@@ -4,6 +4,18 @@ import profileImage from '../assets/images/profile.png';
 import designerGraphic from '../assets/images/designer-graphic.jpg';
 import developerGraphic from '../assets/images/developer-graphic.png';
 import { useTheme } from '../context/ThemeContext';
+import Modal from './Modal';
+
+const FUN_FACTS = [
+  "I love building things that blend design and code!",
+  "I once built a full-stack app in a single weekend.",
+  "I play piano and love jazz improvisation.",
+  "I can solve a Rubik's cube in under a minute.",
+  "I enjoy hiking and landscape photography.",
+  "I speak three languages!",
+  "I have a secret /secret page on this site... 😉",
+  "I believe in lifelong learning and curiosity.",
+];
 
 // Typewriter effect hook
 function useTypewriter(words, speed = 80, pause = 1200) {
@@ -41,6 +53,20 @@ const Home = () => {
   const developerText = useTypewriter(['Developer']);
   // Easter egg state
   const [easterEgg, setEasterEgg] = useState(false);
+  const [showFact, setShowFact] = useState(false);
+  const [fact, setFact] = useState('');
+
+  // Confetti effect (simple SVG burst)
+  const [showConfetti, setShowConfetti] = useState(false);
+  const triggerEasterEgg = () => {
+    setEasterEgg(true);
+    setShowConfetti(true);
+    setFact(FUN_FACTS[Math.floor(Math.random() * FUN_FACTS.length)]);
+    setShowFact(true);
+    setTimeout(() => setEasterEgg(false), 1200);
+    setTimeout(() => setShowConfetti(false), 1800);
+  };
+
   return (
     <section 
       ref={homeRef}
@@ -82,12 +108,20 @@ const Home = () => {
               alt="Kevin Pradjinata headshot" 
               className={`rounded-full w-56 h-56 md:w-72 md:h-72 object-cover border-4 border-gray-300 dark:border-gray-700 shadow-xl cursor-pointer transition-transform duration-500 ${easterEgg ? 'animate-spin scale-125' : ''}`}
               loading="lazy"
-              onClick={() => {
-                setEasterEgg(true);
-                setTimeout(() => setEasterEgg(false), 1200);
-                alert('👋 Hi there! Thanks for visiting my portfolio!');
-              }}
+              onClick={triggerEasterEgg}
             />
+            {/* Confetti burst */}
+            {showConfetti && (
+              <svg className="absolute pointer-events-none" style={{top: '50%', left: '50%', transform: 'translate(-50%, -60%)'}} width="180" height="120">
+                {[...Array(18)].map((_, i) => (
+                  <circle key={i} cx="90" cy="60" r="6" fill={`hsl(${i*20},90%,60%)`} style={{
+                    transform: `rotate(${i*20}deg) translate(0,-50px)`,
+                    transformOrigin: '90px 60px',
+                    opacity: 0.8
+                  }} />
+                ))}
+              </svg>
+            )}
           </div>
           {/* Developer Section - Image with opacity, scale, and left alignment */}
           <div 
@@ -130,6 +164,13 @@ const Home = () => {
           </svg>
         </div>
       )}
+      <Modal isOpen={showFact} onClose={() => setShowFact(false)}>
+        <div className="flex flex-col items-center text-center">
+          <h2 className="text-2xl font-bold mb-2">🎉 Fun Fact</h2>
+          <p className="mb-2">{fact}</p>
+          <p className="text-xs text-gray-400">(Try the Konami code on your keyboard!)</p>
+        </div>
+      </Modal>
       <style>{`.blinking-cursor{animation:blink 1s steps(2,start) infinite}@keyframes blink{to{opacity:.0}}`}</style>
     </section>
   );
