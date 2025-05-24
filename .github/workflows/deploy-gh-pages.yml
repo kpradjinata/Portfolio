@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Or your default branch if it's not 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Allow the action to write to the repository (to push to gh-pages)
+      pages: write    # Allow the action to manage GitHub Pages deployments
+      id-token: write # For OIDC token if needed by future deployment methods
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Using Node.js 18, adjust if you use a different specific version
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          # Optional: If your repository is a private one and you need to deploy as a specific user
+          # user_name: 'your-github-username'
+          # user_email: 'your-github-email@example.com'
+          # Optional: If you want to commit with a specific message
+          # commit_message: ${{ github.event.head_commit.message }} 
