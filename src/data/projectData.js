@@ -1,7 +1,7 @@
 export const projects = [
   {
     id: 'portfolio-site',
-    title: 'Personal Portfolio Website',
+    title: 'Portfolio Website',
     date: 'Jun 2024',
     description: 'A modern, responsive portfolio website to showcase my projects, skills, and experience. Built with React and Tailwind CSS, and deployed using GitHub Pages with automated CI/CD.',
     keyFeatures: [

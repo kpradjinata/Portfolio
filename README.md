@@ -50,16 +50,6 @@ Open [http://localhost:3000](http://localhost:3000) (or your configured port) wi
 * Client-side routing for a seamless single-page application (SPA) experience.
 * Sections for Home, Showcase (potentially for featured items), Work/Experience, and Contact.
 
-## Deployment
-
-This project is ready to be deployed to any static site hosting service. Some popular options include:
-
-* [Vercel](https://vercel.com/)
-* [Netlify](https://www.netlify.com/)
-* [GitHub Pages](https://pages.github.com/)
-
-To deploy, typically you would run `npm run build` (or `yarn build`) which creates a `build` folder with the production-ready static assets. You then deploy the contents of this `build` folder to your chosen hosting provider. Refer to the documentation of your hosting provider for specific deployment instructions.
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
