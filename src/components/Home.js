@@ -3,7 +3,6 @@ import useInView from '../hooks/useInView';
 import profileImage from '../assets/images/profile.png';
 import designerGraphic from '../assets/images/designer-graphic.jpg';
 import developerGraphic from '../assets/images/developer-graphic.png';
-import { useTheme } from '../context/ThemeContext';
 import Modal from './Modal';
 
 const FUN_FACTS = [

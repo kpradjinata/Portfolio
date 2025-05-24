@@ -75,7 +75,6 @@ const Navbar = () => {
   const initialNavTextHoverColor = theme === 'dark' ? 'hover:text-blue-200' : 'hover:text-blue-500';
   const navTextHoverColor = isScrolled ? scrolledNavTextHoverColor : initialNavTextHoverColor;
 
-  const mobileMenuBg = theme === 'dark' ? 'bg-gray-900' : 'bg-white';
   const mobileMenuText = theme === 'dark' ? 'text-white' : 'text-gray-800';
   const mobileLinkHoverBg = theme === 'dark' ? 'hover:bg-gray-700' : 'hover:bg-gray-200';
   const mobileLinkHoverText = theme === 'dark' ? 'hover:text-blue-300' : 'hover:text-blue-500';
