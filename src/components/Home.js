@@ -46,7 +46,6 @@ function useTypewriter(words, speed = 80, pause = 1200) {
 }
 
 const Home = () => {
-  const { theme } = useTheme();
   const [homeRef, isHomeInView] = useInView({ threshold: 0.1 });
   const [arrowRef, isArrowInView] = useInView({ threshold: 0.1, triggerOnce: false });
   const designerText = useTypewriter(['Designer']);

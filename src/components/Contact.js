@@ -26,16 +26,6 @@ const Contact = () => {
     const button = emailButtonRef.current;
     if (!button || !isButtonContainerInView) return;
 
-    // Base class if boing is done or wasn't applied
-    let baseWiggle = 'animate-mediumWiggle';
-    if (buttonAnimationClass.includes('animate-boing')) {
-        // If boing is still the primary part of the class, respect it.
-        // This effect mostly handles mouse move after initial boing.
-    } else if (!isButtonContainerInView) {
-        setButtonAnimationClass(''); // Clear if scrolled out of view
-        return;
-    }
-
     const handleMouseMove = (event) => {
       if (!emailButtonRef.current) return;
       const rect = emailButtonRef.current.getBoundingClientRect();

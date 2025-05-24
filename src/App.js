@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
@@ -33,7 +33,6 @@ const SecretPage = () => (
 
 // A wrapper component to handle routed content
 const AnimatedRoutes = () => {
-  const location = useLocation();
   return (
     <main className="pt-16">
       <Routes>
