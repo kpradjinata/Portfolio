@@ -1,5 +1,35 @@
 export const projects = [
   {
+    id: 'portfolio-site',
+    title: 'Personal Portfolio Website',
+    date: 'Jun 2024',
+    description: 'A modern, responsive portfolio website to showcase my projects, skills, and experience. Built with React and Tailwind CSS, and deployed using GitHub Pages with automated CI/CD.',
+    keyFeatures: [
+      'Responsive design for all devices',
+      'Dynamic project showcase with detail pages',
+      'Client-side routing with React Router',
+      'Dark mode support',
+      'Continuous deployment via GitHub Actions',
+      'Custom domain support'
+    ],
+    technologiesUsed: [
+      'React for UI',
+      'Tailwind CSS for styling',
+      'React Router for navigation',
+      'GitHub Actions for CI/CD',
+      'GitHub Pages for hosting'
+    ],
+    achievements: [
+      'Automated deployment pipeline with GitHub Actions',
+      'Professional online presence with custom domain support',
+      'Showcases all major projects and skills'
+    ],
+    impact: 'This website serves as my digital resume and project showcase, making it easy for recruiters and collaborators to learn about my work and contact me.',
+    skills: ['React.js', 'Tailwind CSS', 'JavaScript', 'CI/CD', 'GitHub Actions'],
+    githubUrl: 'https://github.com/kpradjinata/Portfolio',
+    techStack: ['React', 'Tailwind CSS', 'GitHub Actions', 'GitHub Pages'],
+  },
+  {
     id: 'binder',
     title: 'Binder',
     date: 'Oct 2024',
