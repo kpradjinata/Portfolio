@@ -75,7 +75,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <Router>
+      <Router basename={"/Portfolio"}>
         <ScrollToTop />
         <div className="App" lang="en">
           <Navbar />
